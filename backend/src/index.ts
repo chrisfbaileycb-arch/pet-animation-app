@@ -10,7 +10,9 @@ import animationRoutes from './routes/animationRoutes';
 import canvasRoutes from './routes/canvasRoutes';
 import presetRoutes from './routes/presetRoutes';
 import renderRoutes from './routes/renderRoutes';
+import cardRoutes from './routes/cardRoutes';
 import { setupAnimationSocket } from './sockets/animationSocket';
+import { setupEmailScheduler } from './utils/emailScheduler';
 import { logger } from './utils/logger';
 
 dotenv.config();
@@ -35,12 +37,16 @@ app.use('/api/animations', animationRoutes);
 app.use('/api/canvas', canvasRoutes);
 app.use('/api/presets', presetRoutes);
 app.use('/api/render', renderRoutes);
+app.use('/api/cards', cardRoutes);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'Pet Animation Backend API', timestamp: new Date() });
 });
 
 setupAnimationSocket(io);
+
+// Initialize background email scheduler
+setupEmailScheduler();
 
 const PORT = process.env.PORT || 5000;
 
