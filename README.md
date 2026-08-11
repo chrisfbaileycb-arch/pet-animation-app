@@ -16,6 +16,8 @@ An interactive, full-stack pet avatar customizer and skeletal animation studio a
 - 🔑 **User Authentication & Auth Middleware**: Full JWT sign up and sign in API integration.
 - ⚡ **Real-Time WebSockets**: Live multi-user animation updates broadcast over Socket.io.
 - 📦 **Monorepo Architecture**: Clean separation between modular frontend and RESTful backend micro-services.
+- 🎭 **Carnival Caricature Generator**: NEW! Convert pet photos into static carnival-style caricature sketches using free Qwen AI.
+- 💌 **Scheduled Email Cards**: NEW! Assemble Hallmark-style cards with handwritten messages and schedule automatic email delivery to family.
 
 ---
 
