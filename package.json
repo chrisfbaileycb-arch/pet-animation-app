@@ -1,0 +1,28 @@
+{
+  "name": "pet-animation-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack Pet Animation Studio application featuring interactive HTML5 Canvas animation, Redux state management, and Node.js REST/Socket API.",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "start": "npm --prefix backend run start"
+  },
+  "keywords": [
+    "pet-animation",
+    "canvas",
+    "react",
+    "redux",
+    "express",
+    "socket.io",
+    "typescript"
+  ],
+  "author": "Chris Bailey (chrisfbaileycb-arch)",
+  "license": "MIT"
+}

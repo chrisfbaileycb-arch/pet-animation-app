@@ -1,0 +1,49 @@
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes';
+import userRoutes from './routes/userRoutes';
+import petRoutes from './routes/petRoutes';
+import animationRoutes from './routes/animationRoutes';
+import canvasRoutes from './routes/canvasRoutes';
+import presetRoutes from './routes/presetRoutes';
+import renderRoutes from './routes/renderRoutes';
+import { setupAnimationSocket } from './sockets/animationSocket';
+import { logger } from './utils/logger';
+
+dotenv.config();
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+});
+
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/pets', petRoutes);
+app.use('/api/animations', animationRoutes);
+app.use('/api/canvas', canvasRoutes);
+app.use('/api/presets', presetRoutes);
+app.use('/api/render', renderRoutes);
+
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', service: 'Pet Animation Backend API', timestamp: new Date() });
+});
+
+setupAnimationSocket(io);
+
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  logger.info(`🐾 Pet Animation Backend Server listening on http://localhost:${PORT}`);
+});
